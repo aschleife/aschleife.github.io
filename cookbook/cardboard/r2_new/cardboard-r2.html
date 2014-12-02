@@ -62,9 +62,14 @@
 			geometry = new THREE.SphereGeometry(50,32,32);
 			material = new THREE.MeshNormalMaterial();
 			mesh = new THREE.Mesh( geometry, material );
-			mesh.position.set(-245.467200,43.675440,636.501200); scene.add( mesh );
+			mesh.position.set(243.288000,90.155200,440.310800); scene.add( mesh );
 
-		window.addEventListener('deviceorientation', hasOrientation, false);
+			geometry = new THREE.SphereGeometry(50,32,32);
+			material = new THREE.MeshNormalMaterial();
+			mesh = new THREE.Mesh( geometry, material );
+			mesh.position.set(243.288000,60.155200,440.310800); scene.add( mesh );
+
+			window.addEventListener('deviceorientation', hasOrientation, false);
 
 		window.addEventListener( 'touchend', function () {
 			if ( isFullscreen === false ) {
