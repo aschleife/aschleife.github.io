@@ -22,8 +22,8 @@
                         var render = function () {
 				var time = Date.now() * 0.005;
                                 requestAnimationFrame( render );
-                                cube.rotation.x += time;
-				cube.rotation.y += 0.01 * time;
+                                cube.rotation.x += 0.0001 * time;
+				cube.rotation.y += 0.0001 * time;
                                 renderer.render(scene, camera);
                         };
                         render();
