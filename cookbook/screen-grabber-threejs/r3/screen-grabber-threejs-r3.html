@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang=en>
+<head>
+<title>Screen Grabber Iframe R3</title>
+<meta charset=utf-8>
+<meta name=author content='Theo Armour' >
+</head>
+<body>
+<script src=http://jaanga.github.io/libs/fs/Blob.js /></script>
+<script src=http://jaanga.github.io/libs/fs/canvas-toBlob.js /></script>
+<script src=http://jaanga.github.io/libs/fs/FileSaver.js /></script>
+<script>
+// copyright (c) 2014 Jaanga authors ~ MIT License
+
+// vars in functions that we might want to be global for debugging
+
+	var image, imageSize, imageHeight, imageWidth;
+	var imageSizes = ['1024 x 1024','1024 x 768','1024 x 512','800 x 600','640 x 480','600 x 600','512 x 512','512 x 256',
+		'480 x 480','480 x 320','384 x 384','320 x 240','256 x 256', '128 x 128', '64 x 64'];
+	var contents;
+	var canvas;
+
+	init();
+
+	function init() {
+
+		document.body.style.cssText = 'font: bold 12pt monospace; ';
+
+		var info = document.body.appendChild( document.createElement( 'div' ) );
+		info.innerHTML =
+			'<a href="" ><h1 style=margin:0; >' + document.title + ' </h1></a>' +
+			'<p>' +
+				'<input type=file id=inpFile onchange=openFile() >' +
+				'Select a size <select id=selSize onchange=updateSize() ></select> ' +
+				'width: <input type=number id=sizeWidth style=width:50px; min=1 /> ' +
+				'height: <input type=number id=sizeHeight style=width:50px; min=1 /> ~ ' +
+				'<a href=JavaScript:grabIt(); >Grab It</a> ~ ' +
+				'<a href=JavaScript:saveIt(); >Save it</a>' +
+			'</p>' +
+		'';
+
+		for ( var i = 0, len = imageSizes.length; i < len; i++ ) {
+
+			opt = selSize.appendChild( document.createElement( 'option' ) );
+			opt.text = imageSizes[ i ];
+
+		}
+
+		selSize.selectedIndex = 4;
+
+		updateSize();
+
+	}
+
+	function updateSize() {
+
+		imageSize = imageSizes[ selSize.selectedIndex ];
+		imageWidth = parseInt( imageSize.substr( 0, imageSize.indexOf(' x ') ), 10 );
+		imageHeight = parseInt( imageSize.substr( imageSize.indexOf(' x ') + 3 ), 10);
+
+		sizeWidth.value = imageWidth;
+		sizeHeight.value = imageHeight;
+
+		if ( contents ) {
+			addIframe( contents )
+		}
+
+	}
+
+	function addIframe( contents ) {
+
+		var iframes = document.getElementsByTagName( 'iframe' ) ;
+		var canvases = document.getElementsByTagName( 'canvas' ) ;
+
+		for ( var i = 0, len = iframes.length; i < len; i++ ) {
+
+			iframes[0].parentNode.removeChild( iframes[ 0 ] );
+			canvases[0].parentNode.removeChild( canvases[ 0 ] );
+
+		}
+
+		ifr = document.body.appendChild( document.createElement( 'iframe' ) );
+		ifr.style.borderWidth = '1px';
+		ifr.width = sizeWidth.value; // window.innerWidth;
+		ifr.height = sizeHeight.value; //window.innerHeight;
+		ifr.srcdoc = contents;
+
+		canvas = document.body.appendChild( document.createElement( 'canvas' ) );
+		canvas.style.cssText = 'border: 2px #000 solid; margin: 0 10px;';
+		canvas.width = ifr.width;
+		canvas.height = ifr.height;
+		context = canvas.getContext( '2d' );
+
+	}
+
+	function openFile() {
+
+		file = inpFile.files[ 0 ];
+
+		var reader = new FileReader();
+
+		reader.onload = function ( event ) {
+
+			contents = reader.result;
+
+			re = /antialias: true/gi;
+			mat = contents.match( re );
+console.log( mat );
+			str = 'antialias: true, preserveDrawingBuffer: true' ;
+
+			contents = contents.replace( re, str );
+
+			addIframe( contents ) ;
+
+		};
+
+		reader.readAsText( file );
+
+	}
+
+	function grabIt() {
+
+		image = new Image();
+
+		image.onload = function() {
+
+			context.clearRect ( 0, 0, imageWidth, imageHeight);
+			context.drawImage( image, 0, 0 );
+
+		};
+
+		image.src = ifr.contentWindow.renderer.domElement.toDataURL('image/png');
+
+	}
+
+	function seconds3grabIt() {
+
+		setTimeout(function(){
+
+			grabIt();
+			console.log( 'got it');
+
+		}, 3000 );
+
+	}
+
+	function saveIt ( ) {
+
+		var name = file.name.replace(/\.html/,'-') + imageSize.replace( / /gi,'' ) + '.png';
+
+		canvas.toBlob( function( blob ) {
+
+			saveAs( blob, name ); 
+
+		});
+
+	}
+
+</script>
+</body>
+</html>
