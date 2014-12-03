@@ -24,6 +24,7 @@
 				console.log(time);
                                 requestAnimationFrame( render );
 				cube.translateY += time*10e7;
+				cube.translateX += time*10e7;
                                 renderer.render(scene, camera);
                         };
                         render();
