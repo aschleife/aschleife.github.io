@@ -24,7 +24,7 @@
 				console.log(time);
                                 requestAnimationFrame( render );
                                 cube.rotation.x = time;
-				cube.rotation.y = time;
+				cube.translateY(0.1);
                                 renderer.render(scene, camera);
                         };
                         render();
