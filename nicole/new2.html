@@ -23,7 +23,6 @@
 				var time = Date.now()*10e-4%7;
 				console.log(time);
                                 requestAnimationFrame( render );
-                                cube.rotation.x = time;
 				cube.translateY = time*10e7;
                                 renderer.render(scene, camera);
                         };
