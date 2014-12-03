@@ -20,7 +20,7 @@
                         scene.add( cube );
                         camera.position.z = 5;
                         var render = function () {
-				var time = Date.now()*10e-4%7;
+				var time = 0.1*Math.sin(Date.now()*10e-3);
 				console.log(time);
                                 requestAnimationFrame( render );
 				cube.translateX(time);
