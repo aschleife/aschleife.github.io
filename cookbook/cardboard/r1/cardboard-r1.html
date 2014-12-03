@@ -53,6 +53,7 @@
 
       camera = new THREE.PerspectiveCamera( 45, container.offsetWidth / container.offsetHeight, 1, 1000 );
       camera.position.set(50, 300, 50);
+      camera.lookAt( scene.position );
       scene.add(camera);
 
       controls = new THREE.OrbitControls(camera, element);
@@ -261,6 +262,11 @@
 
     function render(dt) {
       var time = Date.now();
+      var timer = new Date().getTime() * 0.0005;
+ 
+      camera.position.x = Math.floor(Math.cos( timer ) * 200);
+      camera.position.y = Math.floor(Math.cos( timer ) * 200);
+      camera.position.z = Math.floor(Math.sin( timer ) * 200);
       as_mesh[0].translateZ(0.1*Math.sin((time)*10e-3+100*Math.random() ));
       as_mesh[1].translateZ(0.1*Math.sin((time)*10e-3+100*Math.random() ));
       as_mesh[2].translateZ(0.1*Math.sin((time)*10e-3+100*Math.random() ));
@@ -291,7 +297,9 @@
       as_mesh[27].translateZ(0.1*Math.sin((time)*10e-3+100*Math.random() ));
       as_mesh[28].translateZ(0.1*Math.sin((time)*10e-3+100*Math.random() ));
       as_mesh[29].translateZ(0.1*Math.sin((time)*10e-3+100*Math.random() ));
-      effect.render(scene, camera);
+
+      camera.lookAt( scene.position );
+      effect.render( scene, camera);
     }
 
     function animate(t) {
