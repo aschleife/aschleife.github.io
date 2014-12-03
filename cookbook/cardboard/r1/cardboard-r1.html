@@ -87,7 +87,7 @@
       texture.repeat = new THREE.Vector2(50, 50);
       texture.anisotropy = renderer.getMaxAnisotropy();
 
-      var material = new THREE.MeshPhongMaterial({
+      var material = new THREE.PointCloudMaterial({
         color: 0xffffff,
         specular: 0xffffff,
         shininess: 20,
@@ -100,7 +100,7 @@
       var mesh = new THREE.Mesh(geometry, material);
       mesh.rotation.x = -Math.PI / 4;
 
-      geometry = new THREE.SphereGeometry(2,32,32);
+      geometry = new THREE.SphereGeometry(2,8,8);
       material = new THREE.MeshPhongMaterial( {color:0xffffff} );
 
 		mesh = new THREE.Mesh( geometry, material );
@@ -164,7 +164,7 @@
 		mesh = new THREE.Mesh( geometry, material );
 		mesh.position.set(93.075940,90.622980,82.833400); scene.add( mesh );
 
-      geometry = new THREE.SphereGeometry(4,32,32);
+      geometry = new THREE.SphereGeometry(4,8,8);
       material = new THREE.MeshPhongMaterial( {color:0x7777ff} );
 
                 mesh = new THREE.Mesh( geometry, material );
@@ -180,7 +180,7 @@
                 mesh = new THREE.Mesh( geometry, material );
                 mesh.position.set(82.172940,90.622980,82.296830); scene.add( mesh );
 
-      geometry = new THREE.SphereGeometry(6,32,32);
+      geometry = new THREE.SphereGeometry(6,8,8);
       material = new THREE.MeshPhongMaterial( {color:0xff7777} );
 
 		mesh = new THREE.Mesh( geometry, material );
@@ -208,7 +208,7 @@
 		mesh = new THREE.Mesh( geometry, material );
 		mesh.position.set(80.645910,120.830630,43.880030); scene.add( mesh );
 
-      geometry = new THREE.SphereGeometry(6,32,32);
+      geometry = new THREE.SphereGeometry(6,8,8);
       material = new THREE.MeshPhongMaterial( {color:0x77ff77} );
 
                 mesh = new THREE.Mesh( geometry, material );
