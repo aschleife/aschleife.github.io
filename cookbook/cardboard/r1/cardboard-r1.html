@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>Cardboard Coding Example R1</title>
+<title>MatHack MRS Fall 2014</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <style>
@@ -32,6 +32,9 @@
     var element, container;
 
     var clock = new THREE.Clock();
+    var geometry = new THREE.PlaneGeometry(1000, 1000);
+    var mesh = new THREE.Mesh(geometry, material);
+    var material = new THREE.MeshPhongMaterial( {color:0xffffff} );
 
     init();
     animate();
@@ -59,7 +62,7 @@
       );
       controls.noZoom = true;
       controls.noPan = true;
-      controls.autoRotate = true;
+      controls.autoRotate = false;
 
       function setOrientationControls(e) {
         if (!e.alpha) {
@@ -78,27 +81,6 @@
 
       var light = new THREE.HemisphereLight(0xffffff, 0x000000, 0.6);
       scene.add(light);
-
-      var texture = THREE.ImageUtils.loadTexture(
-        '../textures/patterns/checker.png'
-      );
-      texture.wrapS = THREE.RepeatWrapping;
-      texture.wrapT = THREE.RepeatWrapping;
-      texture.repeat = new THREE.Vector2(50, 50);
-      texture.anisotropy = renderer.getMaxAnisotropy();
-
-      var material = new THREE.PointCloudMaterial({
-        color: 0xffffff,
-        specular: 0xffffff,
-        shininess: 20,
-        shading: THREE.FlatShading,
-        map: texture
-      });
-
-      var geometry = new THREE.PlaneGeometry(1000, 1000);
-
-      var mesh = new THREE.Mesh(geometry, material);
-      mesh.rotation.x = -Math.PI / 4;
 
       geometry = new THREE.SphereGeometry(2,8,8);
       material = new THREE.MeshPhongMaterial( {color:0xffffff} );
@@ -276,6 +258,8 @@
     }
 
     function render(dt) {
+      var time = 0.1*Math.sin(Date.now()*10e-3);
+      mesh.translateX(time);
       effect.render(scene, camera);
     }
 
