@@ -31,7 +31,6 @@
     var effect, controls;
     var element, container;
     var as_mesh = [] ;
-    var mesh;
 
     var clock = new THREE.Clock();
     var geometry = new THREE.PlaneGeometry(1000, 1000);
@@ -64,7 +63,7 @@
       );
       controls.noZoom = true;
       controls.noPan = true;
-      controls.autoRotate = true;
+      controls.autoRotate = false;
 
       function setOrientationControls(e) {
         if (!e.alpha) {
@@ -89,67 +88,9 @@
 
 		as_mesh[0] = new THREE.Mesh( geometry, material );
 		as_mesh[0].position.set(41.027400,38.577600,57.502590); scene.add( as_mesh[0] );
-		as_mesh[1] = new THREE.Mesh( geometry, material );
-		as_mesh[1].position.set(0.704440,21.837720,74.137510); scene.add( as_mesh[1] );
-		as_mesh[2] = new THREE.Mesh( geometry, material );
-		as_mesh[2].position.set(39.618520,98.992910,30.257480); scene.add( as_mesh[2] );
-		as_mesh[3] = new THREE.Mesh( geometry, material );
-		as_mesh[3].position.set(79.941470,82.253040,13.622560); scene.add( as_mesh[3] );
-		as_mesh[4] = new THREE.Mesh( geometry, material );
-		as_mesh[4].position.set(39.618520,82.253040,30.257480); scene.add( as_mesh[4] );
-		as_mesh[5] = new THREE.Mesh( geometry, material );
-		as_mesh[5].position.set(79.941470,98.992910,13.622560); scene.add( as_mesh[5] );
-		as_mesh[6] = new THREE.Mesh( geometry, material );
-		as_mesh[6].position.set(41.027400,21.837720,57.502590); scene.add( as_mesh[6] );
-		as_mesh[7] = new THREE.Mesh( geometry, material );
-		as_mesh[7].position.set(0.704440,38.577600,74.137510); scene.add( as_mesh[7] );
-		as_mesh[8] = new THREE.Mesh( geometry, material );
-		as_mesh[8].position.set(54.699860,30.207660,52.243920); scene.add( as_mesh[8] );
-		as_mesh[9] = new THREE.Mesh( geometry, material );
-		as_mesh[9].position.set(14.376910,30.207660,79.396180); scene.add( as_mesh[9] );
-		as_mesh[10] = new THREE.Mesh( geometry, material );
-		as_mesh[10].position.set(25.946050,90.622980,35.516150); scene.add( as_mesh[10] );
-		as_mesh[11] = new THREE.Mesh( geometry, material );
-		as_mesh[11].position.set(66.269010,90.622980,8.363890); scene.add( as_mesh[11] );
-		as_mesh[12] = new THREE.Mesh( geometry, material );
-		as_mesh[12].position.set(42.260720,39.193230,33.209370); scene.add( as_mesh[12] );
-		as_mesh[13] = new THREE.Mesh( geometry, material );
-		as_mesh[13].position.set(1.937760,21.222090,10.670660); scene.add( as_mesh[13] );
-		as_mesh[14] = new THREE.Mesh( geometry, material );
-		as_mesh[14].position.set(38.385200,99.608550,54.550690); scene.add( as_mesh[14] );
-		as_mesh[15] = new THREE.Mesh( geometry, material );
-		as_mesh[15].position.set(78.708150,81.637400,77.089410); scene.add( as_mesh[15] );
-		as_mesh[16] = new THREE.Mesh( geometry, material );
-		as_mesh[16].position.set(38.385200,81.637400,54.550690); scene.add( as_mesh[16] );
-		as_mesh[17] = new THREE.Mesh( geometry, material );
-		as_mesh[17].position.set(78.708150,99.608550,77.089410); scene.add( as_mesh[17] );
-		as_mesh[18] = new THREE.Mesh( geometry, material );
-		as_mesh[18].position.set(42.260720,21.222090,33.209370); scene.add( as_mesh[18] );
-		as_mesh[19] = new THREE.Mesh( geometry, material );
-		as_mesh[19].position.set(1.937760,39.193230,10.670660); scene.add( as_mesh[19] );
-		as_mesh[20] = new THREE.Mesh( geometry, material );
-		as_mesh[20].position.set(27.892920,30.207660,38.953360); scene.add( as_mesh[20] );
-		as_mesh[21] = new THREE.Mesh( geometry, material );
-		as_mesh[21].position.set(68.215880,30.207660,4.926670); scene.add( as_mesh[21] );
-		as_mesh[22] = new THREE.Mesh( geometry, material );
-		as_mesh[22].position.set(52.752990,90.622980,48.806710); scene.add( as_mesh[22] );
-		as_mesh[23] = new THREE.Mesh( geometry, material );
-		as_mesh[23].position.set(12.430030,90.622980,82.833400); scene.add( as_mesh[23] );
-		as_mesh[24] = new THREE.Mesh( geometry, material );
-		as_mesh[24].position.set(82.583670,21.222090,10.670660); scene.add( as_mesh[24] );
-		as_mesh[25] = new THREE.Mesh( geometry, material );
-		as_mesh[25].position.set(82.583670,39.193230,10.670660); scene.add( as_mesh[25] );
-		as_mesh[26] = new THREE.Mesh( geometry, material );
-		as_mesh[26].position.set(-1.937760,81.637400,77.089410); scene.add( as_mesh[26] );
-		as_mesh[27] = new THREE.Mesh( geometry, material );
-		as_mesh[27].position.set(-1.937760,99.608550,77.089410); scene.add( as_mesh[27] );
-		as_mesh[28] = new THREE.Mesh( geometry, material );
-		as_mesh[28].position.set(-12.430030,30.207660,4.926670); scene.add( as_mesh[28] );
-		as_mesh[29] = new THREE.Mesh( geometry, material );
-		as_mesh[29].position.set(93.075940,90.622980,82.833400); scene.add( as_mesh[29] );
 
       geometry = new THREE.SphereGeometry(4,8,8);
-      material = new THREE.MeshPhongMaterial( {color:0x7777ff} );
+      material = new THREE.As_MeshPhongMaterial( {color:0x7777ff} );
 
                 mesh = new THREE.Mesh( geometry, material );
                 mesh.position.set(38.795930,30.207660,38.416790); scene.add( mesh );
