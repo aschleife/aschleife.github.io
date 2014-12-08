@@ -4,3 +4,4 @@ We made an interactive web app to display atomic coordinates and phonons in 3D.
 
 Names: Nicole Adelstein (nadelstein@gmail.com), Andre Schleife (schleife@illinois.edu)
 
+This web app uses the three.js framework (http://threejs.org/) and the same structure of HTML files in the CardBoard CookBook at https://github.com/jaanga/cookbook/tree/gh-pages/cardboard
